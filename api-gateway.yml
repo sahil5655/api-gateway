@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techefx-spring-cloud-api-gateway-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techefx-spring-cloud-api-gateway-service
+  template:
+    metadata:
+      labels:
+        app: techefx-spring-cloud-api-gateway-service
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: gateway-service
+          image: "techefx-spring-cloud-api-gateway-service:latest"
+          imagePullPolicy: Never
+          ports:
+            - name: gateway-port
+              containerPort: 8900
